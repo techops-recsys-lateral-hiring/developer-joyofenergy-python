@@ -1,0 +1,69 @@
+swagger: "2.0"
+info:
+  description: This is the swagger file that goes with our server code
+  version: 1.0.0
+  title: Swagger REST Article
+consumes:
+- application/json
+produces:
+- application/json
+
+basePath: /
+
+definitions:
+  ElectricityReadings:
+    type: array
+    items:
+      type: object
+      properties:
+        time:
+          type: integer
+        reading:
+          type: number
+
+# Paths supported by the server application
+paths:
+  /readings/store:
+    post:
+      operationId: controller.electricity_reading_controller.store
+      tags:
+      - Electricity Reading Controller
+      summary: Store Readings
+      parameters:
+      - name: data
+        in: body
+        required: True
+        schema:
+          type: object
+          properties:
+            smartMeterId:
+              type: string
+            electricityReadings:
+              $ref: '#/definitions/ElectricityReadings'
+      responses:
+        200:
+          description: Successful store operation
+          schema:
+            type: object
+            properties:
+              smartMeterId:
+                type: string
+              electricityReadings:
+                $ref: '#/definitions/ElectricityReadings'
+  /readings/read/{smart_meter_id}:
+    get:
+      operationId: controller.electricity_reading_controller.read
+      tags:
+      - Electricity Reading Controller
+      summary: Get Stored Readings
+      parameters:
+      - name: smart_meter_id
+        in: path
+        required: True
+        description: A string value, e.g. smart-meter-0
+        type: string
+      responses:
+        200:
+          description: Successful read operation
+          schema:
+            $ref: '#/definitions/ElectricityReadings'
