@@ -1,21 +1,18 @@
 from flask import abort
 
-# Data to serve with our API
-DEMO = {
-    "smartMeterId": 123,
-    "electricityReadings": [
-        {"time": 234, "reading": 345.6}
-    ]
-}
+from repository.electricity_reading_repository import ElectricityReadingRepository
+
+repository = ElectricityReadingRepository()
 
 
-def store():
-    return DEMO
+def store(data):
+    repository.store(data['smartMeterId'], data['electricityReadings'])
+    return data
 
 
 def read(smart_meter_id):
-    readings = [2]
+    readings = repository.find(smart_meter_id)
     if len(readings) < 1:
         abort(404)
     else:
-        return DEMO
+        return readings
