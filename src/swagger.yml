@@ -20,6 +20,13 @@ definitions:
           type: integer
         reading:
           type: number
+  PricePlanComparisons:
+    type: object
+    properties:
+      pricePlanId:
+        type: string
+      pricePlanComparisons:
+        type: object
 
 # Paths supported by the server application
 paths:
@@ -67,3 +74,20 @@ paths:
           description: Successful read operation
           schema:
             $ref: '#/definitions/ElectricityReadings'
+  /price-plans/compare-all/{smart_meter_id}:
+    get:
+      operationId: controller.price_plan_comparator_controller.compare
+      tags:
+      - Price Plan Comparator Controller
+      summary: Compare prices for all plans for a given meter
+      parameters:
+      - name: smart_meter_id
+        in: path
+        required: True
+        description: A string value, e.g. smart-meter-0
+        type: string
+      responses:
+        200:
+          description: Successful comparison operation
+          schema:
+            $ref: '#/definitions/PricePlanComparisons'
