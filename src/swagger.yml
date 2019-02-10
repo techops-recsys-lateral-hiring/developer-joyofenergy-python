@@ -27,6 +27,10 @@ definitions:
         type: string
       pricePlanComparisons:
         type: object
+  PricePlanRecommendations:
+    type: array
+    items:
+      type: object
 
 # Paths supported by the server application
 paths:
@@ -91,3 +95,20 @@ paths:
           description: Successful comparison operation
           schema:
             $ref: '#/definitions/PricePlanComparisons'
+  /price-plans/recommend/{smart_meter_id}:
+    get:
+      operationId: controller.price_plan_comparator_controller.recommend
+      tags:
+      - Price Plan Comparator Controller
+      summary: View recommended price plans for usage
+      parameters:
+      - name: smart_meter_id
+        in: path
+        required: True
+        description: A string value, e.g. smart-meter-0
+        type: string
+      responses:
+        200:
+          description: Successful recommend operation
+          schema:
+            $ref: '#/definitions/PricePlanRecommendations'

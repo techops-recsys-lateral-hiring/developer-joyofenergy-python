@@ -17,3 +17,8 @@ def compare(smart_meter_id):
             "pricePlanId": account_service.get_price_plan(smart_meter_id),
             "pricePlanComparisons": list_of_spend_against_price_plans
         }
+
+def recommend(smart_meter_id):
+    price_plan_service = PricePlanService(readings_repository)
+    list_of_spend_against_price_plans = price_plan_service.get_list_of_spend_against_each_price_plan_for(smart_meter_id)
+    return list_of_spend_against_price_plans
