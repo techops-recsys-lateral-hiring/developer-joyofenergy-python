@@ -13,7 +13,7 @@ class TestPricePlanComparatorController(unittest.TestCase):
 
     def tearDown(self):
         price_plan_repository.clear()
-        #readings_repository.clear()
+        readings_repository.clear()
 
     def test_get_costs_against_all_price_plans(self):
         res = self.client.get('/price-plans/compare-all/meter-1')
