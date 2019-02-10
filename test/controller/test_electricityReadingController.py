@@ -1,11 +1,6 @@
 import unittest
-import config
 
-app = config.app
-app.testing = True
-connex_app = config.connex_app
-connex_app.add_api('swagger.yml', strict_validation=True)
-
+from .setup_test_app import app
 
 class MyTestCase(unittest.TestCase):
     def setUp(self):
