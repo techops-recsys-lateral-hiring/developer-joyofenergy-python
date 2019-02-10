@@ -1,5 +1,5 @@
 class PricePlan:
-    def __init__(self, name, supplier, unit_rate, peak_time_multipliers):
+    def __init__(self, name, supplier, unit_rate, peak_time_multipliers=[]):
         self.name = name
         self.supplier = supplier
         self.unit_rate = unit_rate
