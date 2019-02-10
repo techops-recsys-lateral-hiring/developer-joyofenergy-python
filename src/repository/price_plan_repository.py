@@ -10,3 +10,6 @@ class PricePlanRepository:
 
     def clear(self):
         self.price_plans = []
+
+
+price_plan_repository = PricePlanRepository()
