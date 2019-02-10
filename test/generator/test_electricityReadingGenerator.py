@@ -9,9 +9,9 @@ class TestElectricityReadingGenerator(TestCase):
         generated = electricity_reading_generator.generate_electricity_readings(10)
         self.assertEqual(len(generated), 10)
         for r in generated:
-            self.assertEqual(datetime.fromtimestamp(r.time).year, 2001)
-            self.assertGreaterEqual(r.reading, 0)
-            self.assertLessEqual(r.reading, 1)
+            self.assertEqual(datetime.fromtimestamp(r['time']).year, 2001)
+            self.assertGreaterEqual(r['reading'], 0)
+            self.assertLessEqual(r['reading'], 1)
 
     def test_return_two_digit_number_for_single_digit_number(self):
         with patch('random.randrange', return_value=9):
