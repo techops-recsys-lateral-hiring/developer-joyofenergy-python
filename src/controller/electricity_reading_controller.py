@@ -17,4 +17,4 @@ def read(smart_meter_id):
     if len(readings) < 1:
         abort(404)
     else:
-        return readings
+        return [r.to_json() for r in readings]
