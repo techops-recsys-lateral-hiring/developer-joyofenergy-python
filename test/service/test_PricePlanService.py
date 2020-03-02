@@ -7,7 +7,7 @@ from repository.electricity_reading_repository import ElectricityReadingReposito
 from repository.price_plan_repository import price_plan_repository
 from service.price_plan_service import PricePlanService
 
-class TestElectricityReadingService(TestCase):
+class TestPricePlanService(TestCase):
     electricity_reading_repository = ElectricityReadingRepository()
     price_plan_service = PricePlanService(electricity_reading_repository)
 
