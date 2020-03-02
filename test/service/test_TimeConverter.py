@@ -1,14 +1,16 @@
-from datetime import datetime
 from unittest import TestCase
 
 from service.time_converter import TimeConverter
 
 class TestTimeConverter(TestCase):
+
+    def test_iso_format_to_unix_time(self):
+        self.assertEqual(TimeConverter.iso_format_to_unix_time('1970-01-01T00:00:00'), 0)
+        self.assertEqual(TimeConverter.iso_format_to_unix_time('1970-01-01T01:00:01'), 3601)
+        self.assertEqual(TimeConverter.iso_format_to_unix_time('2020-02-29T23:12:41'), 1583017961)
+
     def test_calculate_elapsed_time_in_hours_from_two_unix_timestamps(self):
-        earlier = self.unix_time_of(datetime.fromisoformat('2018-05-24T11:30:00'))
-        later = self.unix_time_of(datetime.fromisoformat('2018-05-24T12:00:00'))
+        earlier = TimeConverter.iso_format_to_unix_time('2018-05-24T11:30:00')
+        later = TimeConverter.iso_format_to_unix_time('2018-05-24T12:00:00')
 
         self.assertEqual(TimeConverter.time_elapsed_in_hours(earlier, later), 0.5)
-
-    def unix_time_of(self, dt):
-        return (dt - datetime(1970,1,1)).total_seconds()

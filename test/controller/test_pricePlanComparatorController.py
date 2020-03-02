@@ -1,9 +1,9 @@
-from datetime import datetime
 import unittest
 
 from repository.price_plan_repository import price_plan_repository
 from controller.electricity_reading_controller import repository as readings_repository
 from app_initializer import initialize_data
+from service.time_converter import TimeConverter
 
 from .setup_test_app import app
 
@@ -24,8 +24,8 @@ class TestPricePlanComparatorController(unittest.TestCase):
 
     def test_recommend_cheapest_price_plans_no_limit_for_meter_usage(self):
         readings = [
-            { "time": self.unix_time_of('2020-01-05T10:30:00'), "reading": 35.0 },
-            { "time": self.unix_time_of('2020-01-05T11:00:00'), "reading": 3.0 }
+            { "time": TimeConverter.iso_format_to_unix_time('2020-01-05T10:30:00'), "reading": 35.0 },
+            { "time": TimeConverter.iso_format_to_unix_time('2020-01-05T11:00:00'), "reading": 3.0 }
         ]
 
         readingJson = {
@@ -41,7 +41,3 @@ class TestPricePlanComparatorController(unittest.TestCase):
             { "price-plan-1": 76 },
             { "price-plan-0": 380 }
         ])
-
-    def unix_time_of(self, iso_date):
-        dt = datetime.fromisoformat(iso_date)
-        return int((dt - datetime(1970,1,1)).total_seconds())
