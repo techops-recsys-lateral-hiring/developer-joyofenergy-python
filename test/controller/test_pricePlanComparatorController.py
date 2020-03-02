@@ -25,7 +25,7 @@ class TestPricePlanComparatorController(unittest.TestCase):
     def test_recommend_cheapest_price_plans_no_limit_for_meter_usage(self):
         readings = [
             { "time": TimeConverter.iso_format_to_unix_time('2020-01-05T10:30:00'), "reading": 35.0 },
-            { "time": TimeConverter.iso_format_to_unix_time('2020-01-05T11:00:00'), "reading": 3.0 }
+            { "time": TimeConverter.iso_format_to_unix_time('2020-01-05T11:00:00'), "reading": 5.0 }
         ]
 
         readingJson = {
@@ -37,7 +37,7 @@ class TestPricePlanComparatorController(unittest.TestCase):
         res = self.client.get('/price-plans/recommend/meter-103')
         self.assertEqual(res.status_code, 200)
         self.assertEqual(res.get_json(), [
-            { "price-plan-2": 38 },
-            { "price-plan-1": 76 },
-            { "price-plan-0": 380 }
+            { "price-plan-2": 40 },
+            { "price-plan-1": 80 },
+            { "price-plan-0": 400 }
         ])
