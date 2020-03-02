@@ -2,7 +2,7 @@ import unittest
 
 from .setup_test_app import app
 
-class MyTestCase(unittest.TestCase):
+class TestElectricityReadingController(unittest.TestCase):
     def setUp(self):
         self.client = app.test_client()
 
