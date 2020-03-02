@@ -1,4 +1,3 @@
-from datetime import datetime
 from service.time_converter import TimeConverter
 
 import math
