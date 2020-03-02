@@ -1,10 +1,10 @@
-from datetime import datetime
 from unittest import TestCase
 from unittest.mock import MagicMock
 
 from domain.electricity_reading import ElectricityReading
 from repository.electricity_reading_repository import ElectricityReadingRepository
 from service.electricity_reading_service import ElectricityReadingService
+from service.time_converter import TimeConverter
 
 
 class TestElectricityReadingService(TestCase):
@@ -17,8 +17,8 @@ class TestElectricityReadingService(TestCase):
         json = {
             "smartMeterId": "meter-45",
             "electricityReadings": [
-                {"time": datetime.strptime('2015-03-02T08:55:00', '%Y-%m-%dT%H:%M:%S').timestamp(), "reading": 0.812},
-                {"time": datetime.strptime('2015-09-02T08:55:00', '%Y-%m-%dT%H:%M:%S').timestamp(), "reading": 0.23}
+                {"time": TimeConverter.iso_format_to_unix_time('2015-03-02T08:55:00'), "reading": 0.812},
+                {"time": TimeConverter.iso_format_to_unix_time('2015-09-02T08:55:00'), "reading": 0.23}
             ]
         }
 
@@ -26,7 +26,7 @@ class TestElectricityReadingService(TestCase):
 
         self.repository.store.assert_called_with('meter-45', [
             ElectricityReading(
-                {"time": datetime.strptime('2015-03-02T08:55:00', '%Y-%m-%dT%H:%M:%S').timestamp(), "reading": 0.812}),
+                {"time": TimeConverter.iso_format_to_unix_time('2015-03-02T08:55:00'), "reading": 0.812}),
             ElectricityReading(
-                {"time": datetime.strptime('2015-09-02T08:55:00', '%Y-%m-%dT%H:%M:%S').timestamp(), "reading": 0.23})
+                {"time": TimeConverter.iso_format_to_unix_time('2015-09-02T08:55:00'), "reading": 0.23})
         ])
