@@ -17,7 +17,7 @@ class TestPricePlanComparatorController(unittest.TestCase):
         readings_repository.clear()
 
     def test_get_costs_against_all_price_plans(self):
-        res = self.client.get('/price-plans/compare-all/meter-1')
+        res = self.client.get('/price-plans/compare-all/smart-meter-1')
         self.assertEqual(res.status_code, 200)
         self.assertEqual(res.get_json()['pricePlanId'], 'price-plan-1')
         self.assertEqual(len(res.get_json()['pricePlanComparisons']), 3)
