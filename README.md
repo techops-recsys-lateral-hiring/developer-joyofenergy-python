@@ -76,7 +76,7 @@ POST
 }
 ```
 
-`timestamp`: Unix timestamp, e.g. `1504777098`   
+`timestamp`: Unix timestamp (the number of seconds since 1 January 1970 00:00:00 UTC, minus leap seconds), e.g. `1504777098`   
 `reading`: kW reading of smart meter at that time, e.g. `0.0503`
 
 ### Get Stored Readings
