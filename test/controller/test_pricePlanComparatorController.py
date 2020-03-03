@@ -3,9 +3,10 @@ import unittest
 from repository.price_plan_repository import price_plan_repository
 from controller.electricity_reading_controller import repository as readings_repository
 from app_initializer import initialize_data
-from service.time_converter import TimeConverter
+from service.time_converter import iso_format_to_unix_time
 
 from .setup_test_app import app
+
 
 class TestPricePlanComparatorController(unittest.TestCase):
     def setUp(self):
@@ -24,8 +25,8 @@ class TestPricePlanComparatorController(unittest.TestCase):
 
     def test_recommend_cheapest_price_plans_no_limit_for_meter_usage(self):
         readings = [
-            { "time": TimeConverter.iso_format_to_unix_time('2020-01-05T10:30:00'), "reading": 35.0 },
-            { "time": TimeConverter.iso_format_to_unix_time('2020-01-05T11:00:00'), "reading": 5.0 }
+            { "time": iso_format_to_unix_time('2020-01-05T10:30:00'), "reading": 35.0 },
+            { "time": iso_format_to_unix_time('2020-01-05T11:00:00'), "reading": 5.0 }
         ]
 
         readingJson = {
