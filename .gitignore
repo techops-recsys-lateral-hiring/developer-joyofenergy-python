@@ -4,3 +4,4 @@ venv
 *.iml
 .vscode
 /.idea/
+.venv
