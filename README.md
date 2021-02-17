@@ -148,8 +148,9 @@ GET
 
 ## Installation
 
+
 ```console
-$ python3.7 -m pip install connexion Flask pytest
+$ python3.7 -m pip install "connexion[swagger-ui]" Flask pytest
 ```
 
 ## Test
