@@ -107,6 +107,11 @@ paths:
         required: True
         description: A string value, e.g. smart-meter-0
         type: string
+      - in: query
+        name: limit
+        type: integer
+        required: False
+        description: Number of items to return        
       responses:
         200:
           description: Successful recommend operation
