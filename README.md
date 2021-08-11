@@ -67,7 +67,7 @@ the [PIP](https://pip.pypa.io/en/stable/) package manager.
 Install the project dependencies
 
 ```console
-$ python3.7 -m pip install --requirement requirement.txt
+$ python3.7 -m pip install --requirement requirements.txt
 ```
 
 ### Run the tests
