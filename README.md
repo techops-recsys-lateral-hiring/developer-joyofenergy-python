@@ -67,7 +67,7 @@ the [PIP](https://pip.pypa.io/en/stable/) package manager.
 Install the project dependencies
 
 ```console
-$ python3.7 -m pip install "connexion[swagger-ui]" Flask pytest
+$ python3.7 -m pip install --requirement requirement.txt
 ```
 
 ### Run the tests
@@ -75,7 +75,7 @@ $ python3.7 -m pip install "connexion[swagger-ui]" Flask pytest
 Run all tests
 
 ```console
-$ python3.7 -m pytest
+$ python3.7 -m unittest
 ```
 
 ### Run the application
