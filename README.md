@@ -64,10 +64,18 @@ the [PIP](https://pip.pypa.io/en/stable/) package manager.
 
 ### Installation
 
+Create and activate the virtual environment
+
+```console
+$ python3 -m venv venv
+$ source venv/bin/activate
+```
+
 Install the project dependencies
 
 ```console
-$ python3.7 -m pip install --requirement requirements.txt
+$ pip install -r requirements.txt
+$ pip install -r test_requirements.txt
 ```
 
 ### Run the tests
@@ -75,7 +83,7 @@ $ python3.7 -m pip install --requirement requirements.txt
 Run all tests
 
 ```console
-$ python3.7 -m unittest
+pytest
 ```
 
 ### Run the application
@@ -83,7 +91,7 @@ $ python3.7 -m unittest
 Run the application which will be listening on port `5000`.
 
 ```console
-$ python3.7 src/app.py
+$ python src/app.py  # available at http://localhost:5000/ui/ by default
 ```
 
 ## API
