@@ -9,7 +9,7 @@ class TestPricePlan(TestCase):
         peak_time_multiplier = PricePlan.PeakTimeMultiplier(PricePlan.DayOfWeek.WEDNESDAY, 10)
         off_peak_time = datetime(2000, 1, 1, 11, 11, 11)
 
-        plan = PricePlan('plan-name', 'supplier-name', 1, [ peak_time_multiplier ])
+        plan = PricePlan("plan-name", "supplier-name", 1, [peak_time_multiplier])
 
         price = plan.get_price(off_peak_time)
 
@@ -19,7 +19,7 @@ class TestPricePlan(TestCase):
         peak_time_multiplier = PricePlan.PeakTimeMultiplier(PricePlan.DayOfWeek.WEDNESDAY, 10)
         off_peak_time = datetime(2000, 1, 5, 11, 11, 11)
 
-        plan = PricePlan('plan-name', 'supplier-name', 1, [ peak_time_multiplier ])
+        plan = PricePlan("plan-name", "supplier-name", 1, [peak_time_multiplier])
 
         price = plan.get_price(off_peak_time)
 

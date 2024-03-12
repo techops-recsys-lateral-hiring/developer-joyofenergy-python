@@ -17,16 +17,17 @@ class TestElectricityReadingService(TestCase):
         json = {
             "smartMeterId": "meter-45",
             "electricityReadings": [
-                {"time": iso_format_to_unix_time('2015-03-02T08:55:00'), "reading": 0.812},
-                {"time": iso_format_to_unix_time('2015-09-02T08:55:00'), "reading": 0.23}
-            ]
+                {"time": iso_format_to_unix_time("2015-03-02T08:55:00"), "reading": 0.812},
+                {"time": iso_format_to_unix_time("2015-09-02T08:55:00"), "reading": 0.23},
+            ],
         }
 
         self.electricity_reading_service.store_reading(json)
 
-        self.repository.store.assert_called_with('meter-45', [
-            ElectricityReading(
-                {"time": iso_format_to_unix_time('2015-03-02T08:55:00'), "reading": 0.812}),
-            ElectricityReading(
-                {"time": iso_format_to_unix_time('2015-09-02T08:55:00'), "reading": 0.23})
-        ])
+        self.repository.store.assert_called_with(
+            "meter-45",
+            [
+                ElectricityReading({"time": iso_format_to_unix_time("2015-03-02T08:55:00"), "reading": 0.812}),
+                ElectricityReading({"time": iso_format_to_unix_time("2015-09-02T08:55:00"), "reading": 0.23}),
+            ],
+        )
