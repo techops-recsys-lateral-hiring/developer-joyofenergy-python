@@ -1,10 +1,10 @@
 from unittest import TestCase
 from unittest.mock import MagicMock
 
-from domain.electricity_reading import ElectricityReading
-from repository.electricity_reading_repository import ElectricityReadingRepository
-from service.electricity_reading_service import ElectricityReadingService
-from service.time_converter import iso_format_to_unix_time
+from src.domain.electricity_reading import ElectricityReading
+from src.repository.electricity_reading_repository import ElectricityReadingRepository
+from src.service.electricity_reading_service import ElectricityReadingService
+from src.service.time_converter import iso_format_to_unix_time
 
 
 class TestElectricityReadingService(TestCase):
