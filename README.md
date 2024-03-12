@@ -57,7 +57,7 @@ These values are used in the code and in the following examples too.
 
 ## Requirements
 
-The project requires [Python 3.11](https://www.python.org/downloads/release/python-370/) or higher and
+The project requires [Python 3.12](https://www.python.org/downloads/release/python-3120/) or higher and
 the [Poetry](https://python-poetry.org/) package manager.
 
 ## Useful Python commands
