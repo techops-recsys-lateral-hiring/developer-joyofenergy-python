@@ -1,10 +1,9 @@
 from unittest import TestCase
 
-from service.time_converter import iso_format_to_unix_time, time_elapsed_in_hours
+from src.service.time_converter import iso_format_to_unix_time, time_elapsed_in_hours
 
 
 class TestTimeConverter(TestCase):
-
     def test_iso_format_to_unix_time(self):
         self.assertEqual(iso_format_to_unix_time("1970-01-01T00:00:00"), 0)
         self.assertEqual(iso_format_to_unix_time("1970-01-01T01:00:01"), 3601)

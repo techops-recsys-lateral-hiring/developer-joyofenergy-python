@@ -1,20 +1,36 @@
-from flask import abort
+from http import HTTPStatus
+from typing import List
 
-from repository.electricity_reading_repository import ElectricityReadingRepository
-from service.electricity_reading_service import ElectricityReadingService
+from fastapi import APIRouter, Path
+
+from ..repository.electricity_reading_repository import ElectricityReadingRepository
+from ..service.electricity_reading_service import ElectricityReadingService
+from .models import OPENAPI_EXAMPLES, ElectricReading, Readings
 
 repository = ElectricityReadingRepository()
 service = ElectricityReadingService(repository)
 
+router = APIRouter(prefix="/readings", tags=["Readings"])
 
-def store(data):
-    service.store_reading(data)
+
+@router.post(
+    "/store",
+    response_model=ElectricReading,
+    description="Store Readings",
+)
+def store(data: ElectricReading):
+    service.store_reading(data.model_dump(mode="json"))
     return data
 
 
-def read(smart_meter_id):
+@router.get(
+    "/read/{smart_meter_id}",
+    response_model=List[Readings],
+    description="Get Stored Readings",
+)
+def read(smart_meter_id: str = Path(openapi_examples=OPENAPI_EXAMPLES)):
     readings = service.retrieve_readings_for(smart_meter_id)
     if len(readings) < 1:
-        abort(404)
+        return HTTPStatus.NOT_FOUND
     else:
         return [r.to_json() for r in readings]

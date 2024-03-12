@@ -1,7 +1,6 @@
 from functools import reduce
 
-from repository.price_plan_repository import price_plan_repository
-
+from ..repository.price_plan_repository import price_plan_repository
 from .electricity_reading_service import ElectricityReadingService
 from .time_converter import time_elapsed_in_hours
 
@@ -27,12 +26,11 @@ class PricePlanService:
 
         price_plans = price_plan_repository.get()
 
-
         def cost_from_plan(price_plan):
             cost = {}
             cost[price_plan.name] = consumed_energy * price_plan.unit_rate
             return cost
-        
+
         list_of_spend = list(map(cost_from_plan, self.cheapest_plans_first(price_plans)))
 
         return list_of_spend[:limit]

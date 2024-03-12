@@ -1,8 +1,8 @@
 import dataclasses
 from unittest import TestCase
 
-from domain.electricity_reading import ElectricityReading
-from repository.electricity_reading_repository import ElectricityReadingRepository
+from src.domain.electricity_reading import ElectricityReading
+from src.repository.electricity_reading_repository import ElectricityReadingRepository
 
 
 class TestElectricityReadingRepository(TestCase):
