@@ -1,7 +1,7 @@
 from http import HTTPStatus
 from typing import List
 
-from fastapi import APIRouter, Path
+from fastapi import APIRouter, HTTPException, Path
 
 from ..repository.electricity_reading_repository import ElectricityReadingRepository
 from ..service.electricity_reading_service import ElectricityReadingService
@@ -31,6 +31,6 @@ def store(data: ElectricReading):
 def read(smart_meter_id: str = Path(openapi_examples=OPENAPI_EXAMPLES)):
     readings = service.retrieve_readings_for(smart_meter_id)
     if len(readings) < 1:
-        return HTTPStatus.NOT_FOUND
+        raise HTTPException(status_code=HTTPStatus.NOT_FOUND, detail="No readings found")
     else:
         return [r.to_json() for r in readings]
