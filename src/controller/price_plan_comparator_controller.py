@@ -1,7 +1,7 @@
 from http import HTTPStatus
 from typing import Dict, List
 
-from fastapi import APIRouter, Path, Query
+from fastapi import APIRouter, HTTPException, Path, Query
 
 from ..service.account_service import AccountService
 from ..service.price_plan_service import PricePlanService
@@ -25,7 +25,7 @@ def compare(smart_meter_id: str = Path(openapi_examples=OPENAPI_EXAMPLES)):
     list_of_spend_against_price_plans = price_plan_service.get_list_of_spend_against_each_price_plan_for(smart_meter_id)
 
     if len(list_of_spend_against_price_plans) < 1:
-        return HTTPStatus.NOT_FOUND
+        raise HTTPException(status_code=HTTPStatus.NOT_FOUND)
     else:
         return {
             "pricePlanId": account_service.get_price_plan(smart_meter_id),
