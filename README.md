@@ -87,12 +87,12 @@ Run the application which will be listening on port `8020`.
 poetry run python app.py
 ```
 ### Pre-commit hooks
-The project is offering pre-commit hooks, please install them via
+The project is offering [pre-commit](https://pre-commit.com/) hooks, please install them via
 ```console
 pre-commit install
 ```
 
-### GitHub Acitons
+### GitHub Actions
 Each commit in the main branch will trigger a pipeline which will run unit tests and different linting tools.
 When successful it will also containerize the application, finally its scans the docker image for vulnerabilities with [Trivy](https://aquasecurity.github.io/trivy/v0.49/).  
 
